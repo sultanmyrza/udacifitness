@@ -25,6 +25,25 @@ class History extends Component {
       .then(() => this.setState({ready: true}))
   }
 
+  renderItem = ({today, ...metrics}, formattedDate, key) => (
+    <ItemEl>
+      {today ? (
+        <View>
+          <DateHeader date={formattedDate} />
+          <NoDataText>{today}</NoDataText>
+        </View>
+      ) : (
+        <TouchableOpacity
+          onPress={() => {
+            this.props.navigation.navigate('EntryDetail', {entryId: key})
+          }}
+        >
+          <MetricCard date={formattedDate} metrics={metrics} />
+        </TouchableOpacity>
+      )}
+    </ItemEl>
+  )
+
   render () {
     if (this.state.ready === false) {
       return <AppLoading />
@@ -33,7 +52,7 @@ class History extends Component {
     return (
       <UdaciFitnessCalendar
         items={this.props.entries}
-        renderItem={Item}
+        renderItem={this.renderItem}
         renderEmptyDate={EmptyDate}
       />
     )
@@ -43,21 +62,6 @@ class History extends Component {
 const mapStateToProps = entries => ({entries})
 const actions = {receiveEntries, addEntry}
 export default connect(mapStateToProps, actions)(History)
-
-const Item = ({today, ...metrics}, formattedDate, key) => (
-  <ItemEl>
-    {today ? (
-      <View>
-        <DateHeader date={formattedDate} />
-        <NoDataText>{today}</NoDataText>
-      </View>
-    ) : (
-      <TouchableOpacity onPress={() => console.log('Pressed!')}>
-        <MetricCard date={formattedDate} metrics={metrics} />
-      </TouchableOpacity>
-    )}
-  </ItemEl>
-)
 
 const EmptyDate = formattedDate => (
   <ItemEl>

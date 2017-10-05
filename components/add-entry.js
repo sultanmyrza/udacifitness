@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {View, TouchableOpacity, Text, StyleSheet, Platform} from 'react-native'
+import {NavigationActions} from 'react-navigation'
 import {connect} from 'react-redux'
 import {Ionicons} from '@expo/vector-icons'
 import UdaciSlider from './udaci-slider'
@@ -47,6 +48,7 @@ class AddEntry extends Component {
     this.props.addEntry({[key]: entry})
 
     // Navigate to home
+    this.toHome()
 
     // Save to "DB"
     submitEntry({key, entry})
@@ -61,9 +63,14 @@ class AddEntry extends Component {
     this.props.addEntry({[key]: getDailyReminderValue()})
 
     // Navigate to home
+    this.toHome()
 
     // Save to "DB"
     removeEntry(key)
+  }
+
+  toHome = () => {
+    this.props.navigation.dispatch(NavigationActions.back({key: 'AddEntry'}))
   }
 
   render () {
