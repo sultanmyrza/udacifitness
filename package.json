@@ -15,10 +15,12 @@
   },
   "dependencies": {
     "expo": "21.0.2",
+    "glamorous-native": "1.2.0",
     "react": "16.0.0",
     "react-native": "0.48.4",
     "react-redux": "5.0.6",
-    "redux": "3.7.2"
+    "redux": "3.7.2",
+    "udacifitness-calendar": "11.0.0"
   },
   "devDependencies": {
     "babel-eslint": "8.0.1",

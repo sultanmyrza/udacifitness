@@ -1,11 +1,21 @@
 import React from 'react'
-import {View} from 'react-native'
+import glamorous from 'glamorous-native'
 import {
   FontAwesome,
   MaterialIcons,
   MaterialCommunityIcons
 } from '@expo/vector-icons'
-import {white} from './colors'
+import {red, orange, blue, lightPurp, pink, white} from './colors'
+
+const IconContainer = glamorous.view({
+  padding: 5,
+  borderRadius: 8,
+  width: 50,
+  height: 50,
+  justifyContent: 'center',
+  alignItems: 'center',
+  marginRight: 20
+})
 
 export function getMetricMetaInfo (metric) {
   const info = {
@@ -17,9 +27,9 @@ export function getMetricMetaInfo (metric) {
       type: 'steppers',
       getIcon () {
         return (
-          <View>
+          <IconContainer style={{backgroundColor: red}}>
             <MaterialIcons name='directions-run' color={white} size={35} />
-          </View>
+          </IconContainer>
         )
       }
     },
@@ -31,9 +41,9 @@ export function getMetricMetaInfo (metric) {
       type: 'steppers',
       getIcon () {
         return (
-          <View>
+          <IconContainer style={{backgroundColor: orange}}>
             <MaterialCommunityIcons name='bike' color={white} size={32} />
-          </View>
+          </IconContainer>
         )
       }
     },
@@ -45,9 +55,9 @@ export function getMetricMetaInfo (metric) {
       type: 'steppers',
       getIcon () {
         return (
-          <View>
+          <IconContainer style={{backgroundColor: blue}}>
             <MaterialCommunityIcons name='swim' color={white} size={35} />
-          </View>
+          </IconContainer>
         )
       }
     },
@@ -59,9 +69,9 @@ export function getMetricMetaInfo (metric) {
       type: 'slider',
       getIcon () {
         return (
-          <View>
+          <IconContainer style={{backgroundColor: lightPurp}}>
             <FontAwesome name='bed' color={white} size={30} />
-          </View>
+          </IconContainer>
         )
       }
     },
@@ -73,9 +83,9 @@ export function getMetricMetaInfo (metric) {
       type: 'slider',
       getIcon () {
         return (
-          <View>
+          <IconContainer style={{backgroundColor: pink}}>
             <MaterialCommunityIcons name='food' color={white} size={35} />
-          </View>
+          </IconContainer>
         )
       }
     }
