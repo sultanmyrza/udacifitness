@@ -10,8 +10,14 @@ import {purple, white} from './utils/colors'
 import AddEntry from './components/add-entry'
 import History from './components/history'
 import EntryDetail from './components/entry-detail'
+import Live from './components/live'
+import {setLocalNotification} from './utils/helpers'
 
 class App extends React.Component {
+  componentDidMount () {
+    setLocalNotification()
+  }
+
   render () {
     return (
       <Provider store={createStore(reducer)}>
@@ -49,6 +55,15 @@ const Tabs = TabNavigator(
         tabBarLabel: 'Add Entry',
         tabBarIcon: ({tintColor}) => (
           <FontAwesome name='plus-square' size={30} color={tintColor} />
+        )
+      }
+    },
+    Live: {
+      screen: Live,
+      navigationOptions: {
+        tabBarLabel: 'Live',
+        tabBarIcon: ({tintColor}) => (
+          <Ionicons name='ios-speedometer' size={30} color={tintColor} />
         )
       }
     }

@@ -12,7 +12,9 @@ import {submitEntry, removeEntry} from '../utils/api'
 import {
   getMetricMetaInfo,
   timeToString,
-  getDailyReminderValue
+  getDailyReminderValue,
+  clearLocalNotification,
+  setLocalNotification
 } from '../utils/helpers'
 import {purple, white} from '../utils/colors'
 
@@ -54,6 +56,7 @@ class AddEntry extends Component {
     submitEntry({key, entry})
 
     // Clear local notification
+    clearLocalNotification().then(setLocalNotification)
   }
 
   reset = () => {
